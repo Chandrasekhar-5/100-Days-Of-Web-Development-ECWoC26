@@ -111,6 +111,7 @@
 
         nav ul {
             display: flex;
+            align-items: center;
             list-style: none;
             gap: 30px;
         }
@@ -125,7 +126,10 @@
             color: var(--primary-color);
         }
 
-        nav ul li a::after {
+        nav ul li a .btn:hover {
+            color: white;
+        }
+        nav ul li a:not(.btn)::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -136,7 +140,7 @@
             transition: var(--transition);
         }
 
-        nav ul li a:hover::after {
+        nav ul li a:not(.btn):hover::after {
             width: 100%;
         }
 
