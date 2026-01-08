@@ -102,3 +102,19 @@ resetBtn.addEventListener("click", () => {
     tipPerPersonEL.textContent = "₹0.00";
     totalPerPersonEl.textContent = "₹0.00";
 });
+
+// dark mode toggle
+const themeToggle = document.querySelector(".theme-toggle");
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️";
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const isDark = document.body.classList.contains("dark");
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+});
