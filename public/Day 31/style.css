@@ -35,3 +35,18 @@ body {
     flex: 1;
     border-radius: 8px;
 }
+
+.jobs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.job-card {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: #e0e7ff;
+    padding: 0.3rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
