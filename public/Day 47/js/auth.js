@@ -231,7 +231,11 @@ class Auth {
         const dashboard = document.getElementById('dashboard');
         dashboard.style.display = 'block';
 
-        
+        if (window.UI) {
+            window.UIEvent.updateUI();
+        }
+
+
         if (window.Dashboard) {
             window.Dashboard.init(this.currentUser);
         }
