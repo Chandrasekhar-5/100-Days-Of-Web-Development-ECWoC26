@@ -182,17 +182,16 @@ class Dashboard {
         const toggleIcon = document.getElementById('balance-toggle');
 
         balanceElements.forEach(el => {
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-                el.textContent = el.dataset.original;
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            } else {
+            if (!el.dataset.original) {
                 el.dataset.original = el.textContent;
+            }
+
+            if (el.textContent === '••••••') {
+                el.textContent = el.dataset.original;
+                toggleIcon.className = 'fas fa-eye';
+            } else {
                 el.textContent = '••••••';
-                el.classList.add('hidden');
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
+                toggleIcon.className = 'fas fa-eye-slash';
             }
         });
     }
@@ -342,17 +341,17 @@ class Dashboard {
 
         
         if (!fromAccount || !toAccount || isNaN(amount) || amount <= 0) {
-            Auth.showToast('Please fill in all fields correctly', 'error');
+            window.Auth.showToast('Please fill in all fields correctly', 'error');
             return;
         }
 
         if (!this.currentUser.accounts[fromAccount]) {
-            Auth.showToast('Invalid from account', 'error');
+            window.Auth.showToast('Invalid from account', 'error');
             return;
         }
 
         if (amount > this.currentUser.accounts[fromAccount].balance) {
-            Auth.showToast('Insufficient funds', 'error');
+            window.Auth.showToast('Insufficient funds', 'error');
             return;
         }
 
@@ -361,11 +360,11 @@ class Dashboard {
         
         if (toAccount === 'external') {
             
-            Auth.showToast(`Transfer of $${amount.toFixed(2)} to external account initiated`, 'success');
+            window.Auth.showToast(`Transfer of $${amount.toFixed(2)} to external account initiated`, 'success');
         } else if (this.currentUser.accounts[toAccount]) {
             
             this.currentUser.accounts[toAccount].balance += amount;
-            Auth.showToast(`Transfer of $${amount.toFixed(2)} completed successfully`, 'success');
+            window.Auth.showToast(`Transfer of $${amount.toFixed(2)} completed successfully`, 'success');
         }
 
         
@@ -407,12 +406,12 @@ class Dashboard {
         const description = document.getElementById('deposit-description').value || 'Deposit';
 
         if (!account || isNaN(amount) || amount <= 0) {
-            Auth.showToast('Please fill in all fields correctly', 'error');
+            window.Auth.showToast('Please fill in all fields correctly', 'error');
             return;
         }
 
         if (!this.currentUser.accounts[account]) {
-            Auth.showToast('Invalid account', 'error');
+            window.Auth.showToast('Invalid account', 'error');
             return;
         }
 
@@ -446,7 +445,7 @@ class Dashboard {
         
         document.getElementById('deposit-form').reset();
 
-        Auth.showToast(`Deposit of $${amount.toFixed(2)} completed successfully`, 'success');
+        window.Auth.showToast(`Deposit of $${amount.toFixed(2)} completed successfully`, 'success');
         
         
         this.addNotification(`Deposit of $${amount.toFixed(2)} received`, 'success');
@@ -458,7 +457,7 @@ class Dashboard {
         const dueDate = document.getElementById('bill-due-date').value;
 
         if (!billType || isNaN(amount) || amount <= 0 || !dueDate) {
-            Auth.showToast('Please fill in all fields correctly', 'error');
+            window.Auth.showToast('Please fill in all fields correctly', 'error');
             return;
         }
 
@@ -466,7 +465,7 @@ class Dashboard {
         const account = 'checking';
 
         if (amount > this.currentUser.accounts[account].balance) {
-            Auth.showToast('Insufficient funds', 'error');
+            window.Auth.showToast('Insufficient funds', 'error');
             return;
         }
 
@@ -497,7 +496,7 @@ class Dashboard {
        
         document.getElementById('bill-payment-form').reset();
 
-        Auth.showToast(`Bill payment of $${amount.toFixed(2)} completed successfully`, 'success');
+        window.Auth.showToast(`Bill payment of $${amount.toFixed(2)} completed successfully`, 'success');
         
        
         this.addNotification(`Bill payment of $${amount.toFixed(2)} processed`, 'success');
@@ -537,7 +536,7 @@ class Dashboard {
 
         const accountType = prompt('Enter account type (checking/savings/credit):');
         if (!['checking', 'savings', 'credit'].includes(accountType)) {
-            Auth.showToast('Invalid account type', 'error');
+            window.Auth.showToast('Invalid account type', 'error');
             return;
         }
 
@@ -565,7 +564,7 @@ class Dashboard {
         
         this.loadAccounts();
 
-        Auth.showToast('Account created successfully', 'success');
+        window.Auth.showToast('Account created successfully', 'success');
         
        
         if (initialDeposit > 0) {
@@ -678,7 +677,7 @@ class Dashboard {
 
     payBill(billName, amount) {
         if (amount > this.currentUser.accounts.checking.balance) {
-            Auth.showToast('Insufficient funds', 'error');
+            window.Auth.showToast('Insufficient funds', 'error');
             return;
         }
 
@@ -706,7 +705,7 @@ class Dashboard {
         this.updateDashboard();
         this.loadBills();
 
-        Auth.showToast(`${billName} bill paid successfully`, 'success');
+        window.Auth.showToast(`${billName} bill paid successfully`, 'success');
     }
 
     showDepositModal() {

@@ -232,7 +232,7 @@ class Auth {
         dashboard.style.display = 'block';
 
         if (window.UI) {
-            window.UIEvent.updateUI();
+            window.UI.updateUI();
         }
 
 
