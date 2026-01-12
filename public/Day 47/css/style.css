@@ -67,6 +67,17 @@
     color: var(--text-primary);
 }
 
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -593,6 +604,7 @@ body {
 
 .dashboard-section {
     display: none;
+    animation: fadeSlideUp 0.35s ease forwards;
 }
 
 .dashboard-section.active {
@@ -611,6 +623,10 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     margin-bottom: 30px;
+}
+
+.dashboard-grid > * {
+    animation: fadeSlideUp 0.4s ease forwards;
 }
 
 .balance-card {
@@ -698,6 +714,11 @@ body {
     box-shadow: var(--shadow-md);
     overflow: hidden;
     margin-bottom: 20px;
+}
+
+.card,
+.balance-card {
+    animation: fadeSlideUp 0.4s ease forwards;
 }
 
 .card-header {

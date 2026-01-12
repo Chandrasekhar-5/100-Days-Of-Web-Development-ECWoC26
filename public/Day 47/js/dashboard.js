@@ -21,6 +21,7 @@ class Dashboard {
             this.bindEvents();
             this.updateDashboard();
             this.updateDate();
+            this.loadAllTransactions();
         }
     }
 
