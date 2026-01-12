@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Database</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-film"></i> Movie Database</h1>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for movies...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-container">
+                <select id="genre-filter">
+                    <option value="">All Genres</option>
+                </select>
+                <select id="year-filter">
+                    <option value="">All Years</option>
+                </select>
+                <select id="sort-by">
+                    <option value="popularity.desc">Popularity Desc</option>
+                    <option value="popularity.asc">Popularity Asc</option>
+                    <option value="vote_average.desc">Rating Desc</option>
+                    <option value="vote_average.asc">Rating Asc</option>
+                    <option value="release_date.desc">Release Date Desc</option>
+                    <option value="release_date.asc">Release Date Asc</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <div class="movies-grid" id="movies-container">
+                <!-- Movies will be loaded here -->
+            </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be added here -->
+            </div>
+        </main>
+
+        <div class="movie-modal" id="movie-modal">
+            <div class="modal-content">
+                <span class="close-btn" id="close-modal">&times;</span>
+                <div id="modal-body">
+                    <!-- Movie details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
