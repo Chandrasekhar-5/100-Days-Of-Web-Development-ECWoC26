@@ -54,11 +54,12 @@ window.addEventListener('scroll', () => {
 
 const navLinks = document.querySelectorAll('.nav-link');
 const navUnderline = document.querySelector('.nav-underline');
+const navLinkContainer = document.querySelector('.nav-links-container');
 
 navLinks.forEach(link => {
   link.addEventListener('mouseenter', function() {
     const linkRect = this.getBoundingClientRect();
-    const navRect = document.querySelector('.nav').getBoundingClientRect();
+    const containerRect = navLinkContainer.getBoundingClientRect();
     
     navUnderline.style.left = `${linkRect.left - navRect.left}px`;
     navUnderline.style.width = `${linkRect.width}px`;
@@ -66,7 +67,9 @@ navLinks.forEach(link => {
   });
   
   link.addEventListener('mouseleave', function() {
+    if (!navLinkContainer.matches('.hover')) {
     navUnderline.style.opacity = '0';
+  }
   });
 });
 
@@ -89,7 +92,7 @@ function updateActiveLink() {
         activeLink = link;
         
         const linkRect = link.getBoundingClientRect();
-        const navRect = document.querySelector('.nav').getBoundingClientRect();
+        const contntainerRect = navLinkContainer.getBoundingClientRect();
         
         navUnderline.style.left = `${linkRect.left - navRect.left}px`;
         navUnderline.style.width = `${linkRect.width}px`;
@@ -98,6 +101,10 @@ function updateActiveLink() {
     }
   });
 }
+
+navLinkContainer.addEventListener('mouseleave', () => {
+    navUnderline.style.opacity = '0';
+});
 
 window.addEventListener('scroll', updateActiveLink);
 window.addEventListener('resize', updateActiveLink);

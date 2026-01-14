@@ -94,6 +94,11 @@ body {
   gap: 2rem;
 }
 
+.nav-links-container {
+    position: relative;
+    display: flex;
+}
+
 .nav-links a {
   color: var(--text);
   text-decoration: none;
@@ -128,10 +133,11 @@ body {
   left: 0;
   height: 2px;
   background: linear-gradient(to right, var(--primary), var(--accent));
-  width: 100px;
+  width: 0;
   transform: translateX(0);
   transition: all 0.4s ease;
   opacity: 0;
+  z-index: 1;
 }
 
 .theme-btn {
@@ -778,6 +784,11 @@ body {
     display: none;
   }
   
+  .theme-btn {
+    display: flex;
+    margin-left: auto;
+    margin-right: 10px;
+  }
   .mobile-menu-btn {
     display: flex;
   }
